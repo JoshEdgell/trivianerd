@@ -17,13 +17,40 @@ Login form:
       <input type="password" ng-model="main.newUser.password" placeholder="password"/>
       <input type="submit" value="Log In"/>
     </form>
-  </br>
   Create user form:
   <form ng-submit="main.createUser();">
     <input type="text" ng-model="main.newUser.username" placeholder="username"/>
     <input type="password" ng-model="main.newUser.password" placeholder="password"/>
     <input type="submit" value="Log In"/>
   </form>
+
+</br></br></br>
+
+  <form>
+    Question Category
+    <select ng-model="main.nextQuestionCategory">
+      <option value="10">Books</option>
+      <option value="11">Movies</option>
+      <option value="12">Music</option>
+      <option value="14">Television</option>
+      <option value="15">Video Games</option>
+      <option value="17">Science & Nature</option>
+      <option value="18">Computers</option>
+      <option value="23">History</option>
+      <option value="27">Animals</option>
+      <option value="21">Sports</option>
+    </select>
+    Question Difficulty
+    <select ng-model="main.nextQuestionDifficulty">
+      <option value="easy">Easy - 100 points</option>
+      <option value="medium">Medium - 200 points</option>
+      <option value="hard">Hard - 400 points</option>
+    </select>
+    <input type="submit" ng-click="main.getNextQuestion();">
+  </form>
+
+
+
 
   </body>
 </html>
