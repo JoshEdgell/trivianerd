@@ -8,6 +8,11 @@ app.controller('mainController', ['$http', function($http){
   this.users = {};
   this.nextQuestionCategory = '';
   this.nextQuestionDifficulty = '';
+  this.currentQuestion = {};
+  this.currentQuestionText = '';
+  this.currentAnswer = '';
+  this.currentDistractors = [];
+  this.currentPointValue = 0;
   this.createUser = function(){
     $http({
       method: 'POST',
@@ -49,11 +54,25 @@ app.controller('mainController', ['$http', function($http){
     })
   };
   this.getNextQuestion = function(){
+    if (this.nextQuestionDifficulty == 'easy'){
+      this.currentPointValue = 100;
+    } else if (this.nextQuestionDifficulty == 'medium') {
+      this.currentPointValue = 200;
+    } else {
+      this.currentPointValue = 400;
+    }
+    console.log('current point value is', this.currentPointValue)
     $http({
       method: 'GET',
       url: 'https://opentdb.com/api.php?amount=1&category=' + this.nextQuestionCategory + '&difficulty=' + this.nextQuestionDifficulty + '&type=multiple'
     }).then(function(response){
-      console.log(response.data.results[0])
+      controller.currentQuestion = response.data.results[0];
+      controller.currentQuestionText = controller.currentQuestion.question.replace(/&quot;/g, '"').replace(/&#039;/g, "'");
+      controller.currentDistractors = controller.currentQuestion.incorrect_answers;
+      for (let i = 0; i < controller.currentDistractors.length; i++){
+        controller.currentDistractors[i].replace(/&quot;/g, '"').replace(/&#039/g, "'");
+      }
+      controller.currentAnswer = controller.currentQuestion.correct_answer.replace(/&quot;/g, '"').replace(/&#039;/g, "'");
     },function(error){
       console.log(error);
     })
