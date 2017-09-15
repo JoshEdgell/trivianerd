@@ -11,12 +11,19 @@
   <link rel="stylesheet" href="/style.css">
   </head>
   <body ng-controller="mainController as main">
-
-    <form ng-submit="main.login(userPass);">
-      <input type="text" ng-model="userPass.username" placeholder="username"/>
-      <input type="password" ng-model="userPass.password" placeholder="password"/>
+Login form:
+    <form ng-submit="main.login();">
+      <input type="text" ng-model="main.newUser.username" placeholder="username"/>
+      <input type="password" ng-model="main.newUser.password" placeholder="password"/>
       <input type="submit" value="Log In"/>
     </form>
+  </br>
+  Create user form:
+  <form ng-submit="main.createUser();">
+    <input type="text" ng-model="main.newUser.username" placeholder="username"/>
+    <input type="password" ng-model="main.newUser.password" placeholder="password"/>
+    <input type="submit" value="Log In"/>
+  </form>
 
   </body>
 </html>
