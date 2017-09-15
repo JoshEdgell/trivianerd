@@ -1,33 +1,28 @@
-let correct = "correct answer";
-let incorrect = ["distractor 1", "distractor 2", "distractor 3"];
+let this.currentAnswer = "this.currentAnswer answer";
+let this.currentDistractors = ["distractor 1", "distractor 2", "distractor 3"];
 
-const assignAnswerChoices = function(correct, incorrect){
-  let array = [];
+const assignAnswerChoices = function(this.currentAnswer, this.currentDistractors){
   let value = Math.floor(Math.random()*4);
   console.log(value);
   if (value == 0) {
-    array[0] = correct;
-    array[1] = incorrect[0];
-    array[2] = incorrect[1];
-    array[3] = incorrect[2];
+    this.assignedChoices[0] = this.currentAnswer;
+    this.assignedChoices[1] = this.currentDistractors[0];
+    this.assignedChoices[2] = this.currentDistractors[1];
+    this.assignedChoices[3] = this.currentDistractors[2];
   } else if (value == 1) {
-    array[1] = correct;
-    array[0] = incorrect[0];
-    array[2] = incorrect[1];
-    array[3] = incorrect[2];
+    this.assignedChoices[1] = this.currentAnswer;
+    this.assignedChoices[0] = this.currentDistractors[0];
+    this.assignedChoices[2] = this.currentDistractors[1];
+    this.assignedChoices[3] = this.currentDistractors[2];
   } else if (value == 2) {
-    array[2] = correct;
-    array[1] = incorrect[0];
-    array[0] = incorrect[1];
-    array[3] = incorrect[2];
+    this.assignedChoices[2] = this.currentAnswer;
+    this.assignedChoices[1] = this.currentDistractors[0];
+    this.assignedChoices[0] = this.currentDistractors[1];
+    this.assignedChoices[3] = this.currentDistractors[2];
   } else {
-    array[3] = correct;
-    array[1] = incorrect[0];
-    array[2] = incorrect[1];
-    array[0] = incorrect[2];
+    this.assignedChoices[3] = this.currentAnswer;
+    this.assignedChoices[1] = this.currentDistractors[0];
+    this.assignedChoices[2] = this.currentDistractors[1];
+    this.assignedChoices[0] = this.currentDistractors[2];
   }
-  return array;
 }
-
-
-console.log(assignAnswerChoices(correct,incorrect));

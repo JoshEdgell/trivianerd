@@ -13,6 +13,7 @@ app.controller('mainController', ['$http', function($http){
   this.currentAnswer = '';
   this.currentDistractors = [];
   this.currentPointValue = 0;
+  this.assignedChoices = [];
   this.createUser = function(){
     $http({
       method: 'POST',
@@ -69,7 +70,7 @@ app.controller('mainController', ['$http', function($http){
       controller.currentQuestion = response.data.results[0];
       controller.currentQuestionText = controller.currentQuestion.question.replace(/&quot;/g, '"').replace(/&#039;/g, "'");
       controller.currentDistractors = controller.currentQuestion.incorrect_answers;
-      console.log(controller.currentDistractors, 'distractors');
+      controller.assignAnswerChoices();
       for (let i = 0; i < controller.currentDistractors.length; i++){
         controller.currentDistractors[i].replace(/&quot;/g, '"').replace(/&#039/g, "'");
       }
@@ -78,9 +79,47 @@ app.controller('mainController', ['$http', function($http){
       console.log(error);
     })
   };
-  this.assignAnswerChoices = function(){
-    value = Math.floor(Math.random()*4);
+  this.assignAnswerChoices = function(this.currentAnswer, this.currentDistractors){
+    let value = Math.floor(Math.random()*4);
     console.log(value);
+    if (value == 0) {
+      this.assignedChoices[0] = this.currentAnswer;
+      this.assignedChoices[1] = this.currentDistractors[0];
+      this.assignedChoices[2] = this.currentDistractors[1];
+      this.assignedChoices[3] = this.currentDistractors[2];
+    } else if (value == 1) {
+      this.assignedChoices[1] = this.currentAnswer;
+      this.assignedChoices[0] = this.currentDistractors[0];
+      this.assignedChoices[2] = this.currentDistractors[1];
+      this.assignedChoices[3] = this.currentDistractors[2];
+    } else if (value == 2) {
+      this.assignedChoices[2] = this.currentAnswer;
+      this.assignedChoices[1] = this.currentDistractors[0];
+      this.assignedChoices[0] = this.currentDistractors[1];
+      this.assignedChoices[3] = this.currentDistractors[2];
+    } else {
+      this.assignedChoices[3] = this.currentAnswer;
+      this.assignedChoices[1] = this.currentDistractors[0];
+      this.assignedChoices[2] = this.currentDistractors[1];
+      this.assignedChoices[0] = this.currentDistractors[2];
+    }
   }
-  this.assignAnswerChoices();
+  this.checkAnswer = function(text){
+    if (text == this.currentAnswer){
+      console.log('correct answer');
+    } else {
+      console.log('incorrect answer');
+    }
+  };
+  this.submitAnswer = function(answer){
+    if (this.checkAnswer(answer)){
+      //Add current point value to user's total points
+      //Add 1 to user's correct answers
+      //Add 1 to user's correct category answers
+    } else {
+      //Add 1 to user's total incorrect answers
+      //Add 1 to user's total incorrect category answers
+    }
+    //Send prompt to request user action (another question, logout, change question type)
+  }
 }])
