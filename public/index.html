@@ -49,6 +49,11 @@ Login form:
     <input type="submit" ng-click="main.getNextQuestion();">
   </form>
 
+  <div class="showQuestion">
+    <p>{{main.currentQuestionText}}</p>
+    <p>Correct Answer: {{main.currentAnswer}}</p>
+    <p>Distractors:</p>
+    <p ng-repeat="answer in main.currentDistractors">{{answer.text}}</p>
 
 
 

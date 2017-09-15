@@ -69,6 +69,7 @@ app.controller('mainController', ['$http', function($http){
       controller.currentQuestion = response.data.results[0];
       controller.currentQuestionText = controller.currentQuestion.question.replace(/&quot;/g, '"').replace(/&#039;/g, "'");
       controller.currentDistractors = controller.currentQuestion.incorrect_answers;
+      console.log(controller.currentDistractors, 'distractors');
       for (let i = 0; i < controller.currentDistractors.length; i++){
         controller.currentDistractors[i].replace(/&quot;/g, '"').replace(/&#039/g, "'");
       }
@@ -77,4 +78,9 @@ app.controller('mainController', ['$http', function($http){
       console.log(error);
     })
   };
+  this.assignAnswerChoices = function(){
+    value = Math.floor(Math.random()*4);
+    console.log(value);
+  }
+  this.assignAnswerChoices();
 }])
