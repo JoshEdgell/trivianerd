@@ -6,6 +6,8 @@ app.controller('mainController', ['$http', function($http){
   this.newUser = {};
   this.loggedUser = {};
   this.users = {};
+  this.nextQuestionCategory = '';
+  this.nextQuestionDifficulty = '';
   this.createUser = function(){
     $http({
       method: 'POST',
@@ -44,6 +46,16 @@ app.controller('mainController', ['$http', function($http){
       } else {
         controller.users=response.data
       }
+    })
+  };
+  this.getNextQuestion = function(){
+    $http({
+      method: 'GET',
+      url: 'https://opentdb.com/api.php?amount=1&category=' + this.nextQuestionCategory + '&difficulty=' + this.nextQuestionDifficulty + '&type=multiple'
+    }).then(function(response){
+      console.log(response.data.results[0])
+    },function(error){
+      console.log(error);
     })
   };
 }])
