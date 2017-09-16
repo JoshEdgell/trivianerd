@@ -62,7 +62,6 @@ app.controller('mainController', ['$http', function($http){
     } else {
       this.currentPointValue = 400;
     }
-    console.log('current point value is', this.currentPointValue)
     $http({
       method: 'GET',
       url: 'https://opentdb.com/api.php?amount=1&category=' + this.nextQuestionCategory + '&difficulty=' + this.nextQuestionDifficulty + '&type=multiple'
@@ -72,16 +71,17 @@ app.controller('mainController', ['$http', function($http){
       controller.currentDistractors = controller.currentQuestion.incorrect_answers;
       controller.assignAnswerChoices();
       for (let i = 0; i < controller.currentDistractors.length; i++){
+        console.log(controller.currentDistractors[i], 'before change')
         controller.currentDistractors[i].replace(/&quot;/g, '"').replace(/&#039/g, "'");
+        console.log(controller.currentDistractors[i], 'after change')
       }
       controller.currentAnswer = controller.currentQuestion.correct_answer.replace(/&quot;/g, '"').replace(/&#039;/g, "'");
     },function(error){
       console.log(error);
     })
   };
-  this.assignAnswerChoices = function(this.currentAnswer, this.currentDistractors){
+  this.assignAnswerChoices = function(){
     let value = Math.floor(Math.random()*4);
-    console.log(value);
     if (value == 0) {
       this.assignedChoices[0] = this.currentAnswer;
       this.assignedChoices[1] = this.currentDistractors[0];
