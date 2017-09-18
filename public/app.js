@@ -50,7 +50,7 @@ app.controller('mainController', ['$http', function($http){
       url: this.url + '/users',
       method: 'GET',
       headers: {
-        Authorization: 'Bearer' + JSON.parse(localStorage.getItem('token'))
+        Authorization: 'Bearer ' + JSON.parse(localStorage.getItem('token'))
       }
     }).then(function(response){
       if (response.data.status == 401){
@@ -172,8 +172,22 @@ app.controller('mainController', ['$http', function($http){
       } else {
         this.loggedUser.sports_incorrect += 1;
       }
-      console.log(this.loggedUser);
     }
     //Send prompt to request user action (another question, logout, change question type)
-  }
+  };
+  this.postUserData = function(){
+    $http({
+      method: "PUT",
+      url: this.url + 'users/' + this.loggedUser.id,
+      data: this.loggedUser,
+      headers: {
+        Authorization: 'Bearer ' + JSON.parse(localStorage.getItem('token'))
+      }
+    }).then(function(response){
+      console.log(response);
+    }, function(error){
+      console.log(error);
+    })
+
+  };
 }])
