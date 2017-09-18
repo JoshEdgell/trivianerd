@@ -77,6 +77,8 @@ app.controller('mainController', ['$http', function($http){
   };
   this.getNextQuestion = function(){
     this.displayQuestionForm = false;
+    this.displayCorrect = false;
+    this.displayIncorrect = false;
     this.displayQuestion = true;
     if (this.nextQuestionDifficulty == 'easy'){
       this.currentPointValue = 100;
@@ -212,4 +214,15 @@ app.controller('mainController', ['$http', function($http){
     })
 
   };
+  this.changeQuestionType = function(){
+    this.displayCorrect = false;
+    this.displayIncorrect = false;
+    this.displayQuestionForm = true;
+  };
+  this.quit = function(){
+    this.logout();
+    this.newUser = {};
+    this.loggedUser = {};
+    this.displayLoginModal = true;
+  }
 }])

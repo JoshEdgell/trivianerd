@@ -74,6 +74,9 @@
 
     <div class="correctAnswerModal" ng-if="main.displayCorrect">
       <p>That is correct.</p>
+      <button ng-click="main.getNextQuestion();">Get another question</button>
+      <button ng-click="main.changeQuestionType();">Change question type</button>
+      <button ng-click="main.quit();">Quit</button>
     </div>
 
     <div class="incorrectAnswerModal" ng-if="main.displayIncorrect">
