@@ -147,10 +147,32 @@ app.controller('mainController', ['$http', function($http){
       } else {
         this.loggedUser.sports_correct += 1;
       }
-      console.log(this.loggedUser, 'logged user');
     } else {
       //Add 1 to user's total incorrect answers
+      this.loggedUser.total_incorrect += 1;
       //Add 1 to user's total incorrect category answers
+      if (this.nextQuestionCategory == 10) {
+        this.loggedUser.books_incorrect += 1;
+      } else if (this.nextQuestionCategory == 11) {
+        this.loggedUser.film_incorrect += 1;
+      } else if (this.nextQuestionCategory == 12) {
+        this.loggedUser.music_incorrect += 1;
+      } else if (this.nextQuestionCategory == 14) {
+        this.loggedUser.television_incorrect +=1 ;
+      } else if (this.nextQuestionCategory == 15) {
+        this.loggedUser.games_incorrect += 1;
+      } else if (this.nextQuestionCategory == 17) {
+        this.loggedUser.nature_incorrect += 1;
+      } else if (this.nextQuestionCategory == 18) {
+        this.loggedUser.computers_incorrect += 1;
+      } else if (this.nextQuestionCategory == 23) {
+        this.loggedUser.history_incorrect += 1;
+      } else if (this.nextQuestionCategory == 27) {
+        this.loggedUser.animals_incorrect += 1;
+      } else {
+        this.loggedUser.sports_incorrect += 1;
+      }
+      console.log(this.loggedUser);
     }
     //Send prompt to request user action (another question, logout, change question type)
   }
