@@ -29,8 +29,13 @@ app.controller('mainController', ['$http', function($http){
       url: this.url + 'users/login',
       data: { user: this.newUser },
     }).then(function(response){
-      controller.loggedUser = response.data.user;
-      localStorage.setItem('token', JSON.stringify(response.data.token));
+      if (response.data.status == 401) {
+        console.log('not a valid user');
+      } else {
+        controller.loggedUser = response.data.user;
+        localStorage.setItem('token', JSON.stringify(response.data.token));
+        console.log(controller.loggedUser.username, 'logged user')
+      }
     },function(error){
       console.log(error)
     })
@@ -67,15 +72,13 @@ app.controller('mainController', ['$http', function($http){
       url: 'https://opentdb.com/api.php?amount=1&category=' + this.nextQuestionCategory + '&difficulty=' + this.nextQuestionDifficulty + '&type=multiple'
     }).then(function(response){
       controller.currentQuestion = response.data.results[0];
-      controller.currentQuestionText = controller.currentQuestion.question.replace(/&quot;/g, '"').replace(/&#039;/g, "'");
+      controller.currentQuestionText = controller.currentQuestion.question.replace(/&quot;/g, '"').replace(/&#039;/g, "'").replace(/&amp;/g, "&");
       controller.currentDistractors = controller.currentQuestion.incorrect_answers;
-      controller.assignAnswerChoices();
       for (let i = 0; i < controller.currentDistractors.length; i++){
-        console.log(controller.currentDistractors[i], 'before change')
-        controller.currentDistractors[i].replace(/&quot;/g, '"').replace(/&#039/g, "'");
-        console.log(controller.currentDistractors[i], 'after change')
+        controller.currentDistractors[i].replace(/&quot;/g, '"').replace(/&#039/g, "'").replace(/&amp;/g, "&");
       }
-      controller.currentAnswer = controller.currentQuestion.correct_answer.replace(/&quot;/g, '"').replace(/&#039;/g, "'");
+      controller.currentAnswer = controller.currentQuestion.correct_answer.replace(/&quot;/g, '"').replace(/&#039;/g, "'").replace(/&amp;/g, "&");
+      controller.assignAnswerChoices();
     },function(error){
       console.log(error);
     })
@@ -83,40 +86,46 @@ app.controller('mainController', ['$http', function($http){
   this.assignAnswerChoices = function(){
     let value = Math.floor(Math.random()*4);
     if (value == 0) {
+      console.log('A');
       this.assignedChoices[0] = this.currentAnswer;
       this.assignedChoices[1] = this.currentDistractors[0];
       this.assignedChoices[2] = this.currentDistractors[1];
       this.assignedChoices[3] = this.currentDistractors[2];
     } else if (value == 1) {
-      this.assignedChoices[1] = this.currentAnswer;
+      console.log('B');
       this.assignedChoices[0] = this.currentDistractors[0];
+      this.assignedChoices[1] = this.currentAnswer;
       this.assignedChoices[2] = this.currentDistractors[1];
       this.assignedChoices[3] = this.currentDistractors[2];
     } else if (value == 2) {
+      console.log('C');
+      this.assignedChoices[0] = this.currentDistractors[0];
+      this.assignedChoices[1] = this.currentDistractors[1];
       this.assignedChoices[2] = this.currentAnswer;
-      this.assignedChoices[1] = this.currentDistractors[0];
-      this.assignedChoices[0] = this.currentDistractors[1];
       this.assignedChoices[3] = this.currentDistractors[2];
     } else {
+      console.log('D');
+      this.assignedChoices[0] = this.currentDistractors[0];
+      this.assignedChoices[1] = this.currentDistractors[1];
+      this.assignedChoices[2] = this.currentDistractors[2];
       this.assignedChoices[3] = this.currentAnswer;
-      this.assignedChoices[1] = this.currentDistractors[0];
-      this.assignedChoices[2] = this.currentDistractors[1];
-      this.assignedChoices[0] = this.currentDistractors[2];
     }
   }
   this.checkAnswer = function(text){
     if (text == this.currentAnswer){
-      console.log('correct answer');
+      return true
     } else {
-      console.log('incorrect answer');
+      return false
     }
   };
   this.submitAnswer = function(answer){
     if (this.checkAnswer(answer)){
+      console.log('correct');
       //Add current point value to user's total points
       //Add 1 to user's correct answers
       //Add 1 to user's correct category answers
     } else {
+      console.log('incorrect');
       //Add 1 to user's total incorrect answers
       //Add 1 to user's total incorrect category answers
     }

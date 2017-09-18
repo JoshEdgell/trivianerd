@@ -51,9 +51,10 @@ Login form:
 
   <div class="showQuestion">
     <p>{{main.currentQuestionText}}</p>
-    <p>Correct Answer: {{main.currentAnswer}}</p>
-    <p>Distractors:</p>
-    <p ng-repeat="answer in main.currentDistractors">{{answer}}</p>
+
+    <div class="answerButton" ng-repeat="choice in main.assignedChoices">
+      <button ng-click="main.submitAnswer(choice)">{{choice}}</button>
+    </div>
 
 
 
