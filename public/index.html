@@ -11,51 +11,73 @@
   <link rel="stylesheet" href="/style.css">
   </head>
   <body ng-controller="mainController as main">
-Login form:
-    <form ng-submit="main.login();">
-      <input type="text" ng-model="main.newUser.username" placeholder="username"/>
-      <input type="password" ng-model="main.newUser.password" placeholder="password"/>
-      <input type="submit" value="Log In"/>
+
+    <div class="loginModal" ng-if="main.displayLoginModal">
+
+      <div class="loginForm">
+        <form ng-submit="main.login();">
+          <input type="text" ng-model="main.newUser.username" placeholder="username"/>
+          <input type="password" ng-model="main.newUser.password" placeholder="password"/>
+          <input type="submit" value="Log In"/>
+        </form>
+        <p>Don't have an account? <a href="#" ng-click="main.switchLoginModals();">Create one now.</a></p>
+      </div>
+    </div>
+
+
+      <div class="createUserModal" ng-if="main.displayCreateModal">
+        <form ng-submit="main.createUser();">
+          <input type="text" ng-model="main.newUser.first_name" placeholder="first name"/>
+          <input type="text" ng-model="main.newUser.lastName" placeholder="last name"/>
+          <input type="text" ng-model="main.newUser.username" placeholder="username"/>
+          <input type="password" ng-model="main.newUser.password" placeholder="password"/>
+          <input type="submit" value="Create Account"/>
+        </form>
+      </div>
+
+
+
+
+  <div class="nextQuestionForm" ng-if="main.displayQuestionForm">
+    <form>
+      Choose a category:</br>
+      <select ng-model="main.nextQuestionCategory">
+        <option value="10">Books</option>
+        <option value="11">Movies</option>
+        <option value="12">Music</option>
+        <option value="14">Television</option>
+        <option value="15">Video Games</option>
+        <option value="17">Science & Nature</option>
+        <option value="18">Computers</option>
+        <option value="23">History</option>
+        <option value="27">Animals</option>
+        <option value="21">Sports</option>
+      </select>
+      </br>
+      Choose a difficulty: </br>
+      <select ng-model="main.nextQuestionDifficulty">
+        <option value="easy">Easy - 100 points</option>
+        <option value="medium">Medium - 200 points</option>
+        <option value="hard">Hard - 400 points</option>
+      </select></br>
+      <input type="submit" ng-click="main.getNextQuestion();">
     </form>
-  Create user form:
-  <form ng-submit="main.createUser();">
-    <input type="text" ng-model="main.newUser.username" placeholder="username"/>
-    <input type="password" ng-model="main.newUser.password" placeholder="password"/>
-    <input type="submit" value="Log In"/>
-  </form>
+  </div>
 
-</br><button ng-click="main.postUserData();">Update User Data</button>
-
-</br></br>
-
-  <form>
-    Question Category
-    <select ng-model="main.nextQuestionCategory">
-      <option value="10">Books</option>
-      <option value="11">Movies</option>
-      <option value="12">Music</option>
-      <option value="14">Television</option>
-      <option value="15">Video Games</option>
-      <option value="17">Science & Nature</option>
-      <option value="18">Computers</option>
-      <option value="23">History</option>
-      <option value="27">Animals</option>
-      <option value="21">Sports</option>
-    </select>
-    Question Difficulty
-    <select ng-model="main.nextQuestionDifficulty">
-      <option value="easy">Easy - 100 points</option>
-      <option value="medium">Medium - 200 points</option>
-      <option value="hard">Hard - 400 points</option>
-    </select>
-    <input type="submit" ng-click="main.getNextQuestion();">
-  </form>
-
-  <div class="showQuestion">
+  <div class="showQuestion" ng-if="main.displayQuestion">
     <p>{{main.currentQuestionText}}</p>
 
     <div class="answerButton" ng-repeat="choice in main.assignedChoices">
       <button ng-click="main.submitAnswer(choice)">{{choice}}</button>
+    </div>
+  </div>
+
+    <div class="correctAnswerModal" ng-if="main.displayCorrect">
+      <p>That is correct.</p>
+    </div>
+
+    <div class="incorrectAnswerModal" ng-if="main.displayIncorrect">
+      <p>That is incorrect.</p>
     </div>
 
 

@@ -15,7 +15,14 @@ app.controller('mainController', ['$http', function($http){
   this.currentDistractors = [];
   this.currentPointValue = 0;
   this.assignedChoices = [];
+  this.displayLoginModal = true;
+  this.displayCreateModal = false;
+  this.displayQuestionForm = false;
+  this.displayQuestion = false;
+  this.displayCorrect = false;
+  this.displayIncorrect = false;
   this.createUser = function(){
+    this.displayCreateModal = false;
     $http({
       method: 'POST',
       url: this.url + 'users',
@@ -25,6 +32,8 @@ app.controller('mainController', ['$http', function($http){
     })
   };
   this.login = function() {
+    console.log('clicked');
+    this.displayLoginModal = false;
     $http({
       method: 'POST',
       url: this.url + 'users/login',
@@ -36,6 +45,7 @@ app.controller('mainController', ['$http', function($http){
         controller.loggedUser = response.data.user;
         localStorage.setItem('token', JSON.stringify(response.data.token));
         console.log(controller.loggedUser.username, 'logged user')
+        controller.displayQuestionForm = true;
       }
     },function(error){
       console.log(error)
@@ -44,6 +54,11 @@ app.controller('mainController', ['$http', function($http){
   this.logout = function(){
     localStorage.clear('token');
     location.reload();
+  };
+  this.switchLoginModals = function(){
+    console.log('clicked');
+    this.displayLoginModal = false;
+    this.displayCreateModal = true;
   };
   this.getUsers = function(){
     $http({
@@ -61,6 +76,8 @@ app.controller('mainController', ['$http', function($http){
     })
   };
   this.getNextQuestion = function(){
+    this.displayQuestionForm = false;
+    this.displayQuestion = true;
     if (this.nextQuestionDifficulty == 'easy'){
       this.currentPointValue = 100;
     } else if (this.nextQuestionDifficulty == 'medium') {
@@ -76,7 +93,7 @@ app.controller('mainController', ['$http', function($http){
       controller.currentQuestionText = controller.currentQuestion.question.replace(/&quot;/g, '"').replace(/&#039;/g, "'").replace(/&amp;/g, "&").replace(/&ntilde;/g, "~");
       controller.currentDistractors = controller.currentQuestion.incorrect_answers;
       for (let i = 0; i < controller.currentDistractors.length; i++){
-        controller.currentDistractors[i].replace(/&quot;/g, '"').replace(/&#039/g, "'").replace(/&amp;/g, "&").replace(/&ntilde;/g, "~");
+        controller.currentDistractors[i].replace(/&quot;/g, '"').replace(/&#039;/g, "'").replace(/&amp;/g, "&").replace(/&ntilde;/g, "~");
       }
       controller.currentAnswer = controller.currentQuestion.correct_answer.replace(/&quot;/g, '"').replace(/&#039;/g, "'").replace(/&amp;/g, "&").replace(/&ntilde;/g, "~");
       controller.assignAnswerChoices();
@@ -120,7 +137,10 @@ app.controller('mainController', ['$http', function($http){
     }
   };
   this.submitAnswer = function(answer){
+    this.displayQuestion = false;
     if (this.checkAnswer(answer)){
+      console.log('correct');
+      this.displayCorrect = true;
       //Add current point value to user's total points
       this.loggedUser.total_score += this.currentPointValue;
       //Add 1 to user's correct answers
@@ -148,6 +168,8 @@ app.controller('mainController', ['$http', function($http){
         this.loggedUser.sports_correct += 1;
       }
     } else {
+      console.log('incorrect');
+      this.displayIncorrect = true;
       //Add 1 to user's total incorrect answers
       this.loggedUser.total_incorrect += 1;
       //Add 1 to user's total incorrect category answers
