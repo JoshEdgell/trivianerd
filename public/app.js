@@ -8,6 +8,7 @@ app.controller('mainController', ['$http', function($http){
   this.users = {};
   this.nextQuestionCategory = '';
   this.nextQuestionDifficulty = '';
+  this.currentQuestionCategory = '';
   this.currentQuestion = {};
   this.currentQuestionText = '';
   this.currentAnswer = '';
@@ -72,12 +73,12 @@ app.controller('mainController', ['$http', function($http){
       url: 'https://opentdb.com/api.php?amount=1&category=' + this.nextQuestionCategory + '&difficulty=' + this.nextQuestionDifficulty + '&type=multiple'
     }).then(function(response){
       controller.currentQuestion = response.data.results[0];
-      controller.currentQuestionText = controller.currentQuestion.question.replace(/&quot;/g, '"').replace(/&#039;/g, "'").replace(/&amp;/g, "&");
+      controller.currentQuestionText = controller.currentQuestion.question.replace(/&quot;/g, '"').replace(/&#039;/g, "'").replace(/&amp;/g, "&").replace(/&ntilde;/g, "~");
       controller.currentDistractors = controller.currentQuestion.incorrect_answers;
       for (let i = 0; i < controller.currentDistractors.length; i++){
-        controller.currentDistractors[i].replace(/&quot;/g, '"').replace(/&#039/g, "'").replace(/&amp;/g, "&");
+        controller.currentDistractors[i].replace(/&quot;/g, '"').replace(/&#039/g, "'").replace(/&amp;/g, "&").replace(/&ntilde;/g, "~");
       }
-      controller.currentAnswer = controller.currentQuestion.correct_answer.replace(/&quot;/g, '"').replace(/&#039;/g, "'").replace(/&amp;/g, "&");
+      controller.currentAnswer = controller.currentQuestion.correct_answer.replace(/&quot;/g, '"').replace(/&#039;/g, "'").replace(/&amp;/g, "&").replace(/&ntilde;/g, "~");
       controller.assignAnswerChoices();
     },function(error){
       console.log(error);
@@ -120,12 +121,34 @@ app.controller('mainController', ['$http', function($http){
   };
   this.submitAnswer = function(answer){
     if (this.checkAnswer(answer)){
-      console.log('correct');
       //Add current point value to user's total points
+      this.loggedUser.total_score += this.currentPointValue;
       //Add 1 to user's correct answers
+      this.loggedUser.total_correct += 1;
       //Add 1 to user's correct category answers
+      if (this.nextQuestionCategory == 10) {
+        this.loggedUser.books_correct += 1;
+      } else if (this.nextQuestionCategory == 11) {
+        this.loggedUser.film_correct += 1;
+      } else if (this.nextQuestionCategory == 12) {
+        this.loggedUser.music_correct += 1;
+      } else if (this.nextQuestionCategory == 14) {
+        this.loggedUser.television_correct +=1 ;
+      } else if (this.nextQuestionCategory == 15) {
+        this.loggedUser.games_correct += 1;
+      } else if (this.nextQuestionCategory == 17) {
+        this.loggedUser.nature_correct += 1;
+      } else if (this.nextQuestionCategory == 18) {
+        this.loggedUser.computers_correct += 1;
+      } else if (this.nextQuestionCategory == 23) {
+        this.loggedUser.history_correct += 1;
+      } else if (this.nextQuestionCategory == 27) {
+        this.loggedUser.animals_correct += 1;
+      } else {
+        this.loggedUser.sports_correct += 1;
+      }
+      console.log(this.loggedUser, 'logged user');
     } else {
-      console.log('incorrect');
       //Add 1 to user's total incorrect answers
       //Add 1 to user's total incorrect category answers
     }
