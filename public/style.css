@@ -1,0 +1,32 @@
+/*-------------------LOGIN/CREATE MODALS-----------------------------*/
+
+.loginModal {
+  width: 90%;
+  height: 90%;
+  z-index: 1;
+  background-color: red;
+  margin-left: 5%;
+}
+.loginForm {
+  border: 1px solid black;
+  width: 80%;
+  height: 80%;
+  margin-left: 10%;
+  margin-top: 10%;
+}
+.createUserModal {
+  width: 90%;
+  height: 90%;
+  z-index: 1;
+  background-color: red;
+  margin-left: 5%;
+}
+.createUserForm {
+  border: 1px solid black;
+  width: 80%;
+  height: 80%;
+  margin-left: 10%;
+  margin-top: 10%;
+}
+
+/*-------------------LOGIN/CREATE MODALS-----------------------------*/
