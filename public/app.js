@@ -21,6 +21,7 @@ app.controller('mainController', ['$http', function($http){
   this.displayNoMatch = false;
   this.displayLoginFail = false;
   this.displayNewBadgeModal = false;
+  this.displayNewTriviaBadgeModal = false;
   this.displayQuestionForm = false;
   this.displayQuestion = false;
   this.displayCorrect = false;
@@ -75,8 +76,6 @@ app.controller('mainController', ['$http', function($http){
     }).then(function(response){
       controller.loggedUser = response.data;
       controller.loggedUserBadges = response.data.badges.length - 1;
-      console.log(controller.loggedUser, 'current user');
-      console.log(controller.loggedUserBadges, 'logged user badges')
     }, function(error){
       console.log(error, 'error from logging current user')
     })
@@ -87,12 +86,14 @@ app.controller('mainController', ['$http', function($http){
     location.reload();
   };
   this.switchLoginModals = function(){
-    console.log('clicked');
     this.displayLoginModal = false;
     this.displayCreateModal = true;
   };
   this.closeNewBadgeModal = function(){
     this.displayNewBadgeModal = false;
+  };
+  this.closeNewTriviaBadgeModal = function(){
+    this.displayNewTriviaBadgeModal = false;
   };
   this.getUsers = function(){
     $http({
@@ -140,25 +141,21 @@ app.controller('mainController', ['$http', function($http){
   this.assignAnswerChoices = function(){
     let value = Math.floor(Math.random()*4);
     if (value == 0) {
-      console.log('A');
       this.assignedChoices[0] = this.currentAnswer;
       this.assignedChoices[1] = this.currentDistractors[0];
       this.assignedChoices[2] = this.currentDistractors[1];
       this.assignedChoices[3] = this.currentDistractors[2];
     } else if (value == 1) {
-      console.log('B');
       this.assignedChoices[0] = this.currentDistractors[0];
       this.assignedChoices[1] = this.currentAnswer;
       this.assignedChoices[2] = this.currentDistractors[1];
       this.assignedChoices[3] = this.currentDistractors[2];
     } else if (value == 2) {
-      console.log('C');
       this.assignedChoices[0] = this.currentDistractors[0];
       this.assignedChoices[1] = this.currentDistractors[1];
       this.assignedChoices[2] = this.currentAnswer;
       this.assignedChoices[3] = this.currentDistractors[2];
     } else {
-      console.log('D');
       this.assignedChoices[0] = this.currentDistractors[0];
       this.assignedChoices[1] = this.currentDistractors[1];
       this.assignedChoices[2] = this.currentDistractors[2];
@@ -242,9 +239,7 @@ app.controller('mainController', ['$http', function($http){
       }
     }).then(function(response){
       controller.loggedUser = response.data;
-      console.log(response.data, 'dat a from postUserData')
       controller.loggedUserBadges = controller.loggedUser.badges.length - 1;
-      console.log(controller.loggedUserBadges, 'logged user badges');
     }, function(error){
       console.log(error);
     })
@@ -433,7 +428,6 @@ app.controller('mainController', ['$http', function($http){
       badgeEarned = true;
     }
     if (badgeEarned == true) {
-      console.log('new badge earned');
       this.displayNewBadgeModal = true;
     }
   };
@@ -461,8 +455,7 @@ app.controller('mainController', ['$http', function($http){
       badgeEarned = true;
     }
     if (badgeEarned == true) {
-      console.log('new trivia level earned');
-      this.displayNewBadgeModal = true;
+      this.displayNewTriviaBadgeModal = true;
     }
   };
   this.createBadge = function(ach, url){
@@ -475,7 +468,7 @@ app.controller('mainController', ['$http', function($http){
         url: url
       }
     }).then(function(response){
-      // console.log(response, 'badge created');
+
     },function(error){
       console.log(error);
     })
