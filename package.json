@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/JoshEdgell/trivianerd#readme",
   "dependencies": {
+    "chart.js": "^2.7.0",
     "expres": "0.0.5",
     "express": "^4.15.4"
   }

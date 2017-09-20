@@ -7,6 +7,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.5/angular.min.js"></script>
   <!-- JavaScript -->
   <script src="/app.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
   <!-- CSS -->
   <link rel="stylesheet" href="/style.css">
   </head>
@@ -28,7 +29,7 @@
       <div class="createUserModal" ng-if="main.displayCreateModal">
         <form ng-submit="main.createUser();">
           <input type="text" ng-model="main.newUser.first_name" placeholder="first name"/>
-          <input type="text" ng-model="main.newUser.lastName" placeholder="last name"/>
+          <input type="text" ng-model="main.newUser.last_name" placeholder="last name"/>
           <input type="text" ng-model="main.newUser.username" placeholder="username"/>
           <input type="password" ng-model="main.newUser.password" placeholder="password"/>
           <input type="submit" value="Create Account"/>
@@ -76,12 +77,19 @@
       <p>That is correct.</p>
       <button ng-click="main.getNextQuestion();">Get another question</button>
       <button ng-click="main.changeQuestionType();">Change question type</button>
+      <button ng-click="main.showStats();">See My Stats</button>
       <button ng-click="main.quit();">Quit</button>
     </div>
 
     <div class="incorrectAnswerModal" ng-if="main.displayIncorrect">
       <p>That is incorrect.</p>
+      <button ng-click="main.getNextQuestion();">Get another question</button>
+      <button ng-click="main.changeQuestionType();">Change question type</button>
+      <button ng-click="main.quit();">Quit</button>
     </div>
+
+
+
 
 
 
