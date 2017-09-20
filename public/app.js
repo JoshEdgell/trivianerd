@@ -5,6 +5,7 @@ app.controller('mainController', ['$http', function($http){
   this.url = 'http://localhost:3000/';
   this.newUser = {};
   this.loggedUser = {};
+  this.badges = ['a','b','c']
   this.users = {};
   this.nextQuestionCategory = '';
   this.nextQuestionDifficulty = '';
@@ -44,7 +45,6 @@ app.controller('mainController', ['$http', function($http){
       } else {
         controller.loggedUser = response.data.user;
         localStorage.setItem('token', JSON.stringify(response.data.token));
-        console.log(controller.loggedUser, 'logged user')
         controller.displayQuestionForm = true;
         controller.logCurrentUser();
       }
@@ -60,7 +60,8 @@ app.controller('mainController', ['$http', function($http){
         Authorization: 'Bearer ' + JSON.parse(localStorage.getItem('token'))
       }
     }).then(function(response){
-      console.log(response, 'response from logging current user');
+      controller.loggedUser = response.data;
+      console.log(controller.loggedUser, 'current user');
     }, function(error){
       console.log(error, 'error from logging current user')
     })
@@ -239,20 +240,13 @@ app.controller('mainController', ['$http', function($http){
     this.loggedUser = {};
     this.displayLoginModal = true;
   };
-  this.addBadge = function(){
-    $http({
-      method: 'POST',
-      url: this.url + 'badges',
-      data: {
-        user_id: this.loggedUser.id,
-        achievement_id: 1,
-        url: 'wwww.google.com'
+  this.checkForBadge = function(badge){
+    for (let i = 0; i < this.loggedUser.badges.length; i++) {
+      if (this.loggedUser.badges[i] == badge) {
+        return true;
       }
-    }).then(function(response){
-      console.log(response, 'response');
-    }, function(error){
-      console.log(error, 'error')
-    })
+    }
+    return false;
   };
   this.showStats = function(){
     this.displayCorrect = false;
