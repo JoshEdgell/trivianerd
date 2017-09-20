@@ -21,6 +21,7 @@ app.controller('mainController', ['$http', function($http){
   this.displayQuestion = false;
   this.displayCorrect = false;
   this.displayIncorrect = false;
+  this.displayChart = false;
   this.createUser = function(){
     this.displayCreateModal = false;
     $http({
@@ -32,7 +33,6 @@ app.controller('mainController', ['$http', function($http){
     })
   };
   this.login = function() {
-    console.log('clicked');
     this.displayLoginModal = false;
     $http({
       method: 'POST',
@@ -44,11 +44,25 @@ app.controller('mainController', ['$http', function($http){
       } else {
         controller.loggedUser = response.data.user;
         localStorage.setItem('token', JSON.stringify(response.data.token));
-        console.log(controller.loggedUser.username, 'logged user')
+        console.log(controller.loggedUser, 'logged user')
         controller.displayQuestionForm = true;
+        controller.logCurrentUser();
       }
     },function(error){
       console.log(error)
+    })
+  };
+  this.logCurrentUser = function(){
+    $http({
+      method: 'GET',
+      url: this.url + 'users/' + this.loggedUser.id,
+      headers: {
+        Authorization: 'Bearer ' + JSON.parse(localStorage.getItem('token'))
+      }
+    }).then(function(response){
+      console.log(response, 'response from logging current user');
+    }, function(error){
+      console.log(error, 'error from logging current user')
     })
   };
   this.logout = function(){
@@ -224,5 +238,25 @@ app.controller('mainController', ['$http', function($http){
     this.newUser = {};
     this.loggedUser = {};
     this.displayLoginModal = true;
+  };
+  this.addBadge = function(){
+    $http({
+      method: 'POST',
+      url: this.url + 'badges',
+      data: {
+        user_id: this.loggedUser.id,
+        achievement_id: 1,
+        url: 'wwww.google.com'
+      }
+    }).then(function(response){
+      console.log(response, 'response');
+    }, function(error){
+      console.log(error, 'error')
+    })
+  };
+  this.showStats = function(){
+    this.displayCorrect = false;
+    this.displayIncorrect = false;
+    this.displayChart = true;
   }
 }])
