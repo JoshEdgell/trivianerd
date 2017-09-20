@@ -5,7 +5,7 @@ app.controller('mainController', ['$http', function($http){
   this.url = 'http://localhost:3000/';
   this.newUser = {};
   this.loggedUser = {};
-  this.badges = ['a','b','c']
+  this.loggedUserBadges = 0;
   this.users = {};
   this.nextQuestionCategory = '';
   this.nextQuestionDifficulty = '';
@@ -65,7 +65,9 @@ app.controller('mainController', ['$http', function($http){
       }
     }).then(function(response){
       controller.loggedUser = response.data;
+      controller.loggedUserBadges = response.data.badges.length - 1;
       console.log(controller.loggedUser, 'current user');
+      console.log(controller.loggedUserBadges, 'logged user badges')
     }, function(error){
       console.log(error, 'error from logging current user')
     })
@@ -82,7 +84,7 @@ app.controller('mainController', ['$http', function($http){
   };
   this.closeNewBadgeModal = function(){
     this.displayNewBadgeModal = false;
-  }
+  };
   this.getUsers = function(){
     $http({
       url: this.url + '/users',
@@ -231,6 +233,9 @@ app.controller('mainController', ['$http', function($http){
       }
     }).then(function(response){
       controller.loggedUser = response.data;
+      console.log(response.data, 'dat a from postUserData')
+      controller.loggedUserBadges = controller.loggedUser.badges.length - 1;
+      console.log(controller.loggedUserBadges, 'logged user badges');
     }, function(error){
       console.log(error);
     })
@@ -256,6 +261,7 @@ app.controller('mainController', ['$http', function($http){
     return false;
   };
   this.assignBadges = function(){
+    this.displayNewBadgeModal = false;
     let badgeEarned = false;
     //Animal Badges
     if (this.loggedUser.animals_correct == this.geekLevel && this.checkForBadge('/images/animal_bronze.png') == false) {
@@ -417,27 +423,37 @@ app.controller('mainController', ['$http', function($http){
       this.postUserData();
       badgeEarned = true;
     }
-    if (badgeEarned = true) {
+    if (badgeEarned == true) {
+      console.log('new badge earned');
       this.displayNewBadgeModal = true;
     }
   };
   this.assignTriviaBadges = function(){
     //Trivia Badges
+    let badgeEarned = false;
     if (this.loggedUser.badges.length == 5) {
       this.createBadge(31, '/images/trivia_bronze.png');
       this.postUserData();
+      badgeEarned = true;
     };
     if (this.loggedUser.badges.length == 13) {
       this.createBadge(32, '/images/trivia_silver.png');
       this.postUserData();
+      badgeEarned = true;
     };
     if (this.loggedUser.badges.length == 22) {
       this.createBadge(33, '/images/trivia_gold.png');
       this.postUserData();
+      badgeEarned = true;
     }
     if (this.loggedUser.badges.length == 33) {
       this.createBadge(34, '/images/trivia_platinum.png');
       this.postUserData();
+      badgeEarned = true;
+    }
+    if (badgeEarned == true) {
+      console.log('new trivia level earned');
+      this.displayNewBadgeModal = true;
     }
   };
   this.createBadge = function(ach, url){

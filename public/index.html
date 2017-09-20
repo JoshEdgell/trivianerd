@@ -93,7 +93,7 @@
 
     <div class="newBadgeModal" ng-if="main.displayNewBadgeModal">
       <p>You earned a new badge!</p>
-      <img ng-src="{{main.loggedUser.badges[0].url}}"/>
+      <img ng-src="{{main.loggedUser.badges[main.loggedUserBadges].url}}"/>
       <button ng-click="main.closeNewBadgeModal();">Close</button>
     </div>
 
