@@ -67,6 +67,7 @@ app.controller('mainController', ['$http', function($http){
     })
   };
   this.logout = function(){
+    this.postUserData();
     localStorage.clear('token');
     location.reload();
   };
@@ -212,7 +213,7 @@ app.controller('mainController', ['$http', function($http){
         this.loggedUser.sports_incorrect += 1;
       }
     }
-    //Send prompt to request user action (another question, logout, change question type)
+    this.assignBadges();
   };
   this.postUserData = function(){
     $http({
@@ -248,9 +249,24 @@ app.controller('mainController', ['$http', function($http){
     }
     return false;
   };
-  this.showStats = function(){
-    this.displayCorrect = false;
-    this.displayIncorrect = false;
-    this.displayChart = true;
+  this.assignBadges = function(){
+    if (this.loggedUser.animals_correct == 1 && this.checkForBadge('/images/animal_bronze.png') == false) {
+      this.createBadge(1,'/images/animal_bronze.png');
+    }
+  };
+  this.createBadge = function(ach, url){
+    $http({
+      method: 'POST',
+      url: this.url + 'badges',
+      data: {
+        user_id: this.loggedUser.id,
+        achievement_id: ach,
+        url: url
+      }
+    }).then(function(response){
+      console.log(response);
+    },function(error){
+      console.log(error);
+    })
   }
 }])
