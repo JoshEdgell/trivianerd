@@ -18,6 +18,7 @@ app.controller('mainController', ['$http', function($http){
   this.assignedChoices = [];
   this.displayLoginModal = true;
   this.displayCreateModal = false;
+  this.displayNoMatch = false;
   this.displayNewBadgeModal = false;
   this.displayQuestionForm = false;
   this.displayQuestion = false;
@@ -28,6 +29,12 @@ app.controller('mainController', ['$http', function($http){
   this.wonkLevel = 2;
   this.nerdLevel = 3;
   this.createUser = function(){
+    if (this.newUser.password != this.newUser.password2) {
+      console.log('no match');
+      this.displayNoMatch = true;
+      return
+    }
+    this.displayNoMatch = false;
     this.displayCreateModal = false;
     $http({
       method: 'POST',

@@ -10,31 +10,43 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
   <!-- CSS -->
   <link rel="stylesheet" href="/style.css">
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
   </head>
   <body ng-controller="mainController as main">
 
-    <!-- <img src="/images/computer_gold.png"/> -->
-
+      <!-- Styling Complete -->
+    <img src="/images/trivia_gold.png" class="titleImage" ng-if="main.displayLoginModal">
     <div class="loginModal" ng-if="main.displayLoginModal">
-
       <div class="loginForm">
         <form ng-submit="main.login();">
           <input type="text" ng-model="main.newUser.username" placeholder="username"/>
           <input type="password" ng-model="main.newUser.password" placeholder="password"/>
-          <input type="submit" value="Log In"/>
+          <input type="submit" class="submitButton" value="Bring It On"/>
         </form>
-        <p>Don't have an account? <a href="#" ng-click="main.switchLoginModals();">Create one now.</a></p>
+        <p>Want to join the fun? </p>
+        <p><a href="#" ng-click="main.switchLoginModals();">Create an account</a></p>
       </div>
     </div>
 
-
+      <img src="/images/trivia_gold.png" class="titleImage" ng-if="main.displayCreateModal">
       <div class="createUserModal" ng-if="main.displayCreateModal">
-        <form ng-submit="main.createUser();">
+
+        <form ng-submit="main.createUser();" class="createUserForm">
+
           <input type="text" ng-model="main.newUser.first_name" placeholder="first name"/>
+
           <input type="text" ng-model="main.newUser.last_name" placeholder="last name"/>
+
           <input type="text" ng-model="main.newUser.username" placeholder="username"/>
-          <input type="password" ng-model="main.newUser.password" placeholder="password"/>
-          <input type="submit" value="Create Account"/>
+
+          <input type="password"  ng-model="main.newUser.password" placeholder="password"/>
+
+          <input type="password"  ng-model="main.newUser.password2" placeholder="verify password"/>
+
+          <input type="submit" class="submitButton" value="Create Account"/>
+          <p ng-if="main.displayNoMatch">Passwords do not match</p>
         </form>
       </div>
 
@@ -91,10 +103,18 @@
     </div>
 
 
+      <!-- Make sure this has a z-index of 2 so it'll show up on top of the trivia badge modal -->
+
     <div class="newBadgeModal" ng-if="main.displayNewBadgeModal">
       <p>You earned a new badge!</p>
       <img ng-src="{{main.loggedUser.badges[main.loggedUserBadges].url}}"/>
       <button ng-click="main.closeNewBadgeModal();">Close</button>
+    </div>
+
+    <div class="newTriviaBadgeModal" ng-if="main.displayNewTriviaBadgeModal">
+      <p>You earned a new badge!</p>
+      <img ng-src="{{main.loggedUser.badges[main.loggedUserBadges].url}}"/>
+      <button ng-click="main.closeNewTriviaBadgeModal();">Close</button>
     </div>
 
 
