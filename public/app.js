@@ -27,9 +27,9 @@ app.controller('mainController', ['$http', function($http){
   this.displayCorrect = false;
   this.displayIncorrect = false;
   this.displayChart = false;
-  this.geekLevel = 1;
-  this.wonkLevel = 2;
-  this.nerdLevel = 3;
+  this.geekLevel = 5;
+  this.wonkLevel = 10;
+  this.nerdLevel = 20;
   this.createUser = function(){
     if (this.newUser.password != this.newUser.password2) {
       console.log('no match');
@@ -130,7 +130,7 @@ app.controller('mainController', ['$http', function($http){
       controller.currentQuestionText = controller.currentQuestion.question.replace(/&quot;/g, '"').replace(/&#039;/g, "'").replace(/&amp;/g, "&").replace(/&ntilde;/g, "~");
       controller.currentDistractors = controller.currentQuestion.incorrect_answers;
       for (let i = 0; i < controller.currentDistractors.length; i++){
-        controller.currentDistractors[i].replace(/&quot;/g, '"').replace(/&#039;/g, "'").replace(/&amp;/g, "&").replace(/&ntilde;/g, "~");
+        controller.currentDistractors[i] = controller.currentDistractors[i].replace(/&quot;/g, '"').replace(/&#039;/g, "'").replace(/&amp;/g, "&").replace(/&ntilde;/g, "~");
       }
       controller.currentAnswer = controller.currentQuestion.correct_answer.replace(/&quot;/g, '"').replace(/&#039;/g, "'").replace(/&amp;/g, "&").replace(/&ntilde;/g, "~");
       controller.assignAnswerChoices();
