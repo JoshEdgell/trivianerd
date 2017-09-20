@@ -2,8 +2,8 @@ const app = angular.module('trivia', []);
 
 app.controller('mainController', ['$http', function($http){
   const controller = this;
-  // this.url = 'http://localhost:3000/';
-  this.url = 'https://trivianerdbackend.herokuapp.com/';
+  this.url = 'http://localhost:3000/';
+  // this.url = 'https://trivianerdbackend.herokuapp.com/';
   this.newUser = {};
   this.loggedUser = {};
   this.loggedUserBadges = 0;
