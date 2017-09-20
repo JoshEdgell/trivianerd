@@ -18,6 +18,7 @@ app.controller('mainController', ['$http', function($http){
   this.assignedChoices = [];
   this.displayLoginModal = true;
   this.displayCreateModal = false;
+  this.displayNewBadgeModal = false;
   this.displayQuestionForm = false;
   this.displayQuestion = false;
   this.displayCorrect = false;
@@ -79,6 +80,9 @@ app.controller('mainController', ['$http', function($http){
     this.displayLoginModal = false;
     this.displayCreateModal = true;
   };
+  this.closeNewBadgeModal = function(){
+    this.displayNewBadgeModal = false;
+  }
   this.getUsers = function(){
     $http({
       url: this.url + '/users',
@@ -160,7 +164,6 @@ app.controller('mainController', ['$http', function($http){
   this.submitAnswer = function(answer){
     this.displayQuestion = false;
     if (this.checkAnswer(answer)){
-      console.log('correct');
       this.displayCorrect = true;
       //Add current point value to user's total points
       this.loggedUser.total_score += this.currentPointValue;
@@ -189,7 +192,6 @@ app.controller('mainController', ['$http', function($http){
         this.loggedUser.sports_correct += 1;
       }
     } else {
-      console.log('incorrect');
       this.displayIncorrect = true;
       //Add 1 to user's total incorrect answers
       this.loggedUser.total_incorrect += 1;
@@ -217,6 +219,7 @@ app.controller('mainController', ['$http', function($http){
       }
     }
     this.assignBadges();
+    this.assignTriviaBadges();
   };
   this.postUserData = function(){
     $http({
@@ -253,135 +256,169 @@ app.controller('mainController', ['$http', function($http){
     return false;
   };
   this.assignBadges = function(){
+    let badgeEarned = false;
     //Animal Badges
     if (this.loggedUser.animals_correct == this.geekLevel && this.checkForBadge('/images/animal_bronze.png') == false) {
       this.createBadge(1,'/images/animal_bronze.png');
       this.postUserData();
+      badgeEarned = true;
     };
     if (this.loggedUser.animals_correct == this.wonkLevel && this.checkForBadge('/images/animal_silver.png') == false) {
       this.createBadge(2,'/images/animal_silver.png');
       this.postUserData();
+      badgeEarned = true;
     };
     if (this.loggedUser.animals_correct == this.nerdLevel && this.checkForBadge('/images/animal_gold.png') == false) {
       this.createBadge(3,'/images/animal_gold.png');
       this.postUserData();
+      badgeEarned = true;
     };
     //Book Badges
     if ((this.loggedUser.books_correct == this.geekLevel) && (this.checkForBadge('/images/book_bronze.png') == false)) {
       this.createBadge(4,'/images/book_bronze.png');
       this.postUserData();
+      badgeEarned = true;
     };
     if ((this.loggedUser.books_correct == this.wonkLevel) && (this.checkForBadge('/images/book_silver.png') == false)) {
       this.createBadge(5,'/images/book_silver.png');
       this.postUserData();
+      badgeEarned = true;
     };
     if ((this.loggedUser.books_correct == this.nerdLevel) && (this.checkForBadge('/images/book_gold.png') == false)) {
       this.createBadge(6,'/images/book_gold.png');
       this.postUserData();
+      badgeEarned = true;
     };
     //Computer Badges
     if (this.loggedUser.computers_correct == this.geekLevel && this.checkForBadge('/images/computer_bronze.png') == false) {
       this.createBadge(7,'/images/computer_bronze.png');
       this.postUserData();
+      badgeEarned = true;
     };
     if (this.loggedUser.computers_correct == this.wonkLevel && this.checkForBadge('/images/computer_silver.png') == false) {
       this.createBadge(8,'/images/computer_silver.png');
       this.postUserData();
+      badgeEarned = true;
     };
     if (this.loggedUser.computers_correct == this.nerdLevel && this.checkForBadge('/images/computer_gold.png') == false) {
       this.createBadge(9,'/images/computer_gold.png');
       this.postUserData();
+      badgeEarned = true;
     };
     //Video Games Badges
     if (this.loggedUser.games_correct == this.geekLevel && this.checkForBadge('/images/games_bronze.png') == false) {
       this.createBadge(10,'/images/games_bronze.png');
       this.postUserData();
+      badgeEarned = true;
     };
     if (this.loggedUser.games_correct == this.wonkLevel && this.checkForBadge('/images/games_silver.png') == false) {
       this.createBadge(11,'/images/games_silver.png');
       this.postUserData();
+      badgeEarned = true;
     };
     if (this.loggedUser.games_correct == this.nerdLevel && this.checkForBadge('/images/games_gold.png') == false) {
       this.createBadge(12,'/images/games_gold.png');
       this.postUserData();
+      badgeEarned = true;
     };
     //History Badges
     if (this.loggedUser.history_correct == this.geekLevel && this.checkForBadge('/images/history_bronze.png') == false) {
       this.createBadge(13,'/images/history_bronze.png');
       this.postUserData();
+      badgeEarned = true;
     };
     if (this.loggedUser.history_correct == this.wonkLevel && this.checkForBadge('/images/history_silver.png') == false) {
       this.createBadge(14,'/images/history_silver.png');
       this.postUserData();
+      badgeEarned = true;
     };
     if (this.loggedUser.history_correct == this.nerdLevel && this.checkForBadge('/images/history_gold.png') == false) {
       this.createBadge(15,'/images/history_gold.png');
       this.postUserData();
+      badgeEarned = true;
     };
     //Film Badges
     if (this.loggedUser.film_correct == this.geekLevel && this.checkForBadge('/images/film_bronze.png') == false) {
       this.createBadge(16,'/images/film_bronze.png');
       this.postUserData();
+      badgeEarned = true;
     };
     if (this.loggedUser.film_correct == this.wonkLevel && this.checkForBadge('/images/film_silver.png') == false) {
       this.createBadge(17,'/images/film_silver.png');
       this.postUserData();
+      badgeEarned = true;
     };
     if (this.loggedUser.film_correct == this.nerdLevel && this.checkForBadge('/images/film_gold.png') == false) {
       this.createBadge(18,'/images/film_gold.png');
       this.postUserData();
+      badgeEarned = true;
     };
     //Music Badges
     if (this.loggedUser.music_correct == this.geekLevel && this.checkForBadge('/images/music_bronze.png') == false) {
       this.createBadge(19,'/images/music_bronze.png');
       this.postUserData();
+      badgeEarned = true;
     };
     if (this.loggedUser.music_correct == this.wonkLevel && this.checkForBadge('/images/music_silver.png') == false) {
       this.createBadge(20,'/images/music_silver.png');
       this.postUserData();
+      badgeEarned = true;
     };
     if (this.loggedUser.music_correct == this.nerdLevel && this.checkForBadge('/images/music_gold.png') == false) {
       this.createBadge(21,'/images/music_gold.png');
       this.postUserData();
+      badgeEarned = true;
     };
     //Science Badges
     if (this.loggedUser.nature_correct == this.geekLevel && this.checkForBadge('/images/nature_bronze.png') == false) {
       this.createBadge(22,'/images/nature_bronze.png');
       this.postUserData();
+      badgeEarned = true;
     };
     if (this.loggedUser.nature_correct == this.wonkLevel && this.checkForBadge('/images/nature_silver.png') == false) {
       this.createBadge(23, '/images/nature_silver.png');
       this.postUserData();
+      badgeEarned = true;
     };
     if (this.loggedUser.nature_correct == this.nerdLevel && this.checkForBadge('/images/nature_gold.png') == false) {
       this.createBadge(24,'/images/nature_gold.png');
       this.postUserData();
+      badgeEarned = true;
     };
     //Sports Badges
     if (this.loggedUser.sports_correct == this.geekLevel && this.checkForBadge('/images/sports_bronze.png') == false) {
       this.createBadge(25,'/images/sports_bronze.png');
       this.postUserData();
+      badgeEarned = true;
     };
     if (this.loggedUser.sports_correct == this.wonkLevel && this.checkForBadge('/images/sports_silver.png') == false) {
       this.createBadge(26,'/images/sports_silver.png');
       this.postUserData();
+      badgeEarned = true;
     };
     if (this.loggedUser.sports_correct == this.nerdLevel && this.checkForBadge('/images/sports_gold.png') == false) {
       this.createBadge(27,'/images/sports_gold.png');
       this.postUserData();
+      badgeEarned = true;
     };
     //Television Badges
     if (this.loggedUser.television_correct == this.geekLevel && this.checkForBadge('/images/television_bronze.png') == false) {
       this.createBadge(28,'/images/television_bronze.png');
       this.postUserData();
+      badgeEarned = true;
     };
     if (this.loggedUser.television_correct == this.wonkLevel && this.checkForBadge('/images/television_silver.png') == false) {
       this.createBadge(29,'/images/television_silver.png');
       this.postUserData();
+      badgeEarned = true;
     };
     if (this.loggedUser.television_correct == this.nerdLevel && this.checkForBadge('/images/television_gold.png') == false) {
       this.createBadge(30,'/images/television_gold.png');
       this.postUserData();
+      badgeEarned = true;
+    }
+    if (badgeEarned = true) {
+      this.displayNewBadgeModal = true;
     }
   };
   this.assignTriviaBadges = function(){
