@@ -25,67 +25,73 @@
           <input type="password" ng-model="main.newUser.password" placeholder="password"/>
           <input type="submit" class="submitButton" value="Bring It On"/>
         </form>
-        <p>Want to join the fun? </p>
+        <p ng-if="!main.displayLoginFail">Want to join the fun? </p>
+        <p ng-if="main.displayLoginFail">Login failed</p>
         <p><a href="#" ng-click="main.switchLoginModals();">Create an account</a></p>
       </div>
     </div>
-
+        <!-- Styling Complete -->
       <img src="/images/trivia_gold.png" class="titleImage" ng-if="main.displayCreateModal">
       <div class="createUserModal" ng-if="main.displayCreateModal">
-
         <form ng-submit="main.createUser();" class="createUserForm">
-
           <input type="text" ng-model="main.newUser.first_name" placeholder="first name"/>
-
           <input type="text" ng-model="main.newUser.last_name" placeholder="last name"/>
-
           <input type="text" ng-model="main.newUser.username" placeholder="username"/>
-
           <input type="password"  ng-model="main.newUser.password" placeholder="password"/>
-
           <input type="password"  ng-model="main.newUser.password2" placeholder="verify password"/>
-
           <input type="submit" class="submitButton" value="Create Account"/>
           <p ng-if="main.displayNoMatch">Passwords do not match</p>
         </form>
       </div>
-
-
-
-
-  <div class="nextQuestionForm" ng-if="main.displayQuestionForm">
-    <form>
-      Choose a category:</br>
-      <select ng-model="main.nextQuestionCategory">
-        <option value="10">Books</option>
-        <option value="11">Movies</option>
-        <option value="12">Music</option>
-        <option value="14">Television</option>
-        <option value="15">Video Games</option>
-        <option value="17">Science & Nature</option>
-        <option value="18">Computers</option>
-        <option value="23">History</option>
-        <option value="27">Animals</option>
-        <option value="21">Sports</option>
-      </select>
-      </br>
-      Choose a difficulty: </br>
-      <select ng-model="main.nextQuestionDifficulty">
-        <option value="easy">Easy - 100 points</option>
-        <option value="medium">Medium - 200 points</option>
-        <option value="hard">Hard - 400 points</option>
-      </select></br>
-      <input type="submit" ng-click="main.getNextQuestion();">
-    </form>
-  </div>
-
-  <div class="showQuestion" ng-if="main.displayQuestion">
-    <p>{{main.currentQuestionText}}</p>
-
-    <div class="answerButton" ng-repeat="choice in main.assignedChoices">
-      <button ng-click="main.submitAnswer(choice)">{{choice}}</button>
+      <!-- Styling Complete -->
+  <img src="/images/trivia_gold.png" class="titleImage" ng-if="main.displayQuestionForm">
+  <div class="nextQuestionModal" ng-if="main.displayQuestionForm">
+    <div class="nextQuestionForm" ng-if="main.displayQuestionForm">
+      <form>
+        <p>Choose a category</p>
+        <select ng-model="main.nextQuestionCategory">
+          <option value="10">Books</option>
+          <option value="11">Movies</option>
+          <option value="12">Music</option>
+          <option value="14">Television</option>
+          <option value="15">Video Games</option>
+          <option value="17">Science & Nature</option>
+          <option value="18">Computers</option>
+          <option value="23">History</option>
+          <option value="27">Animals</option>
+          <option value="21">Sports</option>
+        </select>
+        <p>Choose a difficulty</p>
+        <select ng-model="main.nextQuestionDifficulty">
+          <option value="easy">Easy - 100 points</option>
+          <option value="medium">Medium - 200 points</option>
+          <option value="hard">Hard - 400 points</option>
+        </select></br>
+        <input type="submit" ng-click="main.getNextQuestion();" class="questionSubmit">
+      </form>
     </div>
   </div>
+    <!-- Styling Complete -->
+  <div class="showQuestion" ng-if="main.displayQuestion">
+    <p>{{main.currentQuestionText}}</p>
+    <div class="answerButton">
+      <button class="optionA" ng-click="main.submitAnswer(main.assignedChoices[0])">{{main.assignedChoices[0]}}</button>
+    </div>
+    <div class="answerButton">
+      <button class="optionB" ng-click="main.submitAnswer(main.assignedChoices[1])">{{main.assignedChoices[1]}}</button>
+    </div>
+    <div class="answerButton">
+      <button class="optionC" ng-click="main.submitAnswer(main.assignedChoices[2])">{{main.assignedChoices[2]}}</button>
+    </div>
+    <div class="answerButton">
+      <button class="optionD" ng-click="main.submitAnswer(main.assignedChoices[3])">{{main.assignedChoices[3]}}</button>
+    </div>
+  </div>
+
+
+
+
+
 
     <div class="correctAnswerModal" ng-if="main.displayCorrect">
       <p>That is correct.</p>

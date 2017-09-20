@@ -19,6 +19,7 @@ app.controller('mainController', ['$http', function($http){
   this.displayLoginModal = true;
   this.displayCreateModal = false;
   this.displayNoMatch = false;
+  this.displayLoginFail = false;
   this.displayNewBadgeModal = false;
   this.displayQuestionForm = false;
   this.displayQuestion = false;
@@ -45,22 +46,23 @@ app.controller('mainController', ['$http', function($http){
     })
   };
   this.login = function() {
-    this.displayLoginModal = false;
     $http({
       method: 'POST',
       url: this.url + 'users/login',
       data: { user: this.newUser },
     }).then(function(response){
       if (response.data.status == 401) {
-        console.log('not a valid user');
+        controller.displayLoginFail = true;
       } else {
+        controller.displayLoginModal = false;
+        controller.displayLoginFail = false;
         controller.loggedUser = response.data.user;
         localStorage.setItem('token', JSON.stringify(response.data.token));
         controller.displayQuestionForm = true;
         controller.logCurrentUser();
       }
     },function(error){
-      console.log(error)
+      console.log(error, 'login error')
     })
   };
   this.logCurrentUser = function(){
