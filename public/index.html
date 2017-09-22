@@ -152,12 +152,14 @@
 
     <div class="showBadgeModal" ng-if="main.displayBadges">
       <p>Your Badges</p>
-      <div class="oneBadge" ng-repeat="badge in main.loggedUser.badges">
-        <img ng-src="{{badge.url}}"/>
+      <div class="badges">
+        <div class="oneBadge" ng-repeat="badge in main.loggedUser.badges">
+          <img ng-src="{{badge.url}}"/>
+        </div>
+        <button ng-click="main.getNextQuestion();">Get Another Question</button>
+        <button ng-click="main.changeQuestionType();">Change Question Type</button>
+        <button class="submitButton" ng-click="main.quit();">Quit</button>
       </div>
-      <button ng-click="main.getNextQuestion();">Get Another Question</button>
-      <button ng-click="main.changeQuestionType();">Change Question Type</button>
-      <button class="submitButton" ng-click="main.quit();">Quit</button>
 
     </div>
 

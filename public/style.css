@@ -591,7 +591,37 @@ a {
   font-family: 'Source Sans Pro', sans-serif;
   border: 5px solid rgb(68, 68, 68);
 }
-/*-------------------NEW BADGE MODALS-----------------------------*/
+/*-------------------SHOW BADGE MODAL-----------------------------*/
+.showBadgeModal {
+  width: 80%;
+  margin-left: 10%;
+  min-height: 90%;
+  background-color: rgb(255, 255, 0);
+  border-radius: 40px;
+  z-index: 1;
+  background-color: rgb(44, 193, 106);
+}
+.showBadgeModal p {
+  text-align: center;
+  font-size: 2em;
+  margin-bottom: 0.5em;
+}
+.oneBadge img {
+  margin-left: calc(50% - 100px);
+  width: 200px;
+  height: 200px;
+  margin-bottom: 0.5em;
+}
+.showBadgeModal button {
+  font-size: 1em;
+  width: 80%;
+  margin-left: 10%;
+  border-radius: 0.1em;
+  margin-bottom: 1em;
+  text-align: center;
+  font-family: 'Source Sans Pro', sans-serif;
+  border: 5px solid rgb(68, 68, 68);
+}
 }
 
 
@@ -884,5 +914,700 @@ a {
   font-family: 'Source Sans Pro', sans-serif;
   border: 5px solid rgb(68, 68, 68);
 }
+/*-------------------SHOW BADGE MODAL-----------------------------*/
+.showBadgeModal {
+  width: 80%;
+  margin-left: 10%;
+  min-height: 90%;
+  background-color: rgb(255, 255, 0);
+  border-radius: 40px;
+  z-index: 1;
+  background-color: rgb(44, 193, 106);
+}
+.showBadgeModal p {
+  text-align: center;
+  font-size: 2em;
+  margin-bottom: 0.5em;
+}
+.oneBadge img {
+  margin-left: calc(50% - 100px);
+  width: 200px;
+  height: 200px;
+  margin-bottom: 0.5em;
+}
+.showBadgeModal button {
+  font-size: 1em;
+  width: 80%;
+  margin-left: 10%;
+  border-radius: 0.1em;
+  margin-bottom: 1em;
+  text-align: center;
+  font-family: 'Source Sans Pro', sans-serif;
+  border: 5px solid rgb(68, 68, 68);
+}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*----------------------@750--------------------*/
+@media only screen and (min-width: 750px) {
+body {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 1.5em;
+  background-color: rgb(0,0,0);
+}
+input {
+  font-size: 1.5em;
+  width: 100%;
+  border-radius: 0.1em;
+  margin-bottom: 1em;
+  text-align: center;
+  font-family: 'Source Sans Pro', sans-serif;
+  border: 5px solid rgb(68, 68, 68);
+}
+.submitButton {
+  border: 5px solid rgb(29, 132, 72);
+  color: rgb(68, 68, 68);
+  background-color: rgb(196, 196, 196);
+  width: 105%;
+}
+a {
+  text-decoration: none;
+}
+
+/*-------------------LOGIN/CREATE MODALS-----------------------------*/
+.loginModal {
+  position: absolute;
+  margin-top: 30%;
+  width: 80%;
+  height: 80%;
+  z-index: 1;
+  background-color: rgb(44, 193, 106);
+  border-radius: 40px;
+  margin-left: 10%;
+}
+.titleImage {
+  position: absolute;
+  margin-left: 12.5%;
+  width: 75%;
+  margin-top: 0.3em;
+}
+.loginForm {
+  margin-left: 5%;
+  margin-top: 10%;
+  width: 85%;
+}
+.loginModal p {
+  margin-top: 0.1em;
+  margin-bottom: 0.4em;
+  text-align: center;
+  font-size: 1.5em;
+  line-height: 1.6em;
+}
+.createUserModal {
+  position: absolute;
+  font-size: 1.1em;
+  margin-top: 30%;
+  width: 80%;
+  height: 80%;
+  z-index: 1;
+  background-color: rgb(44, 193, 106);
+  border-radius: 40px;
+  margin-left: 10%;
+}
+.formContainer {
+  display: block;
+}
+.submitDiv {
+  display: block;
+}
+.createUserForm {
+  margin-left: 7.5%;
+  margin-top: 10%;
+  width: 80%;
+  display: block;
+}
+.createUserForm input {
+  font-size: 1.3em;
+  margin-bottom: 0.9em;
+  text-align: center;
+  border: 5px solid rgb(68, 68, 68);
+}
+.createUserForm .submitButton {
+  width: 105%;
+}
+.createUserModal p {
+  margin-top: -0.3em;
+  margin-bottom: 0.6em;
+  text-align: center;
+  line-height: 1em;
+}
+/*-------------------LOGIN/CREATE MODALS-----------------------------*/
+
+/*-------------------NEXT-QUESTION-FORM-----------------------------*/
+.nextQuestionModal {
+  position: absolute;
+  margin-top: 30%;
+  width: 80%;
+  height: 80%;
+  z-index: 1;
+  background-color: rgb(44, 193, 106);
+  border-radius: 40px;
+  margin-left: 10%;
+}
+.nextQuestionForm {
+  margin-left: 10%;
+  margin-top: 5%;
+  width: 80%;
+}
+.nextQuestionModal p {
+  font-size: 1.5em;
+  margin-top: 0.5em;
+  margin-bottom: 0.3em;
+  text-align: center;
+  line-height: 1em;
+}
+.nextQuestionModal select {
+  font-size: 1.3em;
+  width: 100%;
+  border-radius: 0.1em;
+  text-align: center;
+  font-family: 'Source Sans Pro', sans-serif;
+  border: 5px solid rgb(68, 68, 68);
+}
+.nextQuestionModal option {
+  font-size: 1.5em;
+  width: 100%;
+  border-radius: 0.1em;
+  margin-bottom: 0.3em;
+  text-align: center;
+  font-family: 'Source Sans Pro', sans-serif;
+  border: 5px solid rgb(68, 68, 68);
+}
+.questionSubmit {
+  margin-top: 2em;
+}
+/*-------------------NEXT-QUESTION-FORM-----------------------------*/
+
+/*-------------------SHOW QUESTION-----------------------------*/
+.showQuestion {
+  position: absolute;
+  margin-top: 10%;
+  width: 80%;
+  height: 90%;
+  z-index: 1;
+  background-color: rgb(44, 193, 106);
+  border-radius: 40px;
+  margin-left: 10%;
+}
+.showQuestion p {
+  text-align: center;
+  font-size: 1.5em;
+  margin-bottom: 0.5em;
+}
+.showQuestion button {
+  font-size: 1em;
+  width: 80%;
+  margin-left: 10%;
+  border-radius: 0.1em;
+  margin-bottom: 1.5em;
+  text-align: center;
+  font-family: 'Source Sans Pro', sans-serif;
+}
+.optionA {
+  background-color: rgb(255, 136, 136);
+  border: 5px solid rgb(255, 0, 0);
+}
+.optionB {
+  background-color: rgb(136, 255, 136);
+  border: 5px solid rgb(0, 255, 0);
+}
+.optionC {
+  background-color: rgb(255, 255, 136);
+  border: 5px solid rgb(255, 255, 0);
+}
+.optionD {
+  background-color: rgb(136, 136, 255);
+  border: 5px solid rgb(0, 0, 255);
+}
+/*-------------------SHOW QUESTION-----------------------------*/
+
+/*-------------------ANSWER MODALS-----------------------------*/
+.answerModal {
+  position: absolute;
+  margin-top: 10%;
+  width: 80%;
+  height: 90%;
+  z-index: 1;
+  background-color: rgb(44, 193, 106);
+  border-radius: 40px;
+  margin-left: 10%;
+  font-size: 1em;
+}
+.answerModal p {
+  font-size: 2em;
+  margin-top: 20%;
+  width: 95%;
+  margin-left: 2.5%;
+  text-align: center;
+}
+.answerModal button {
+  font-size: 1em;
+  width: 80%;
+  margin-left: 10%;
+  border-radius: 0.1em;
+  margin-bottom: 1.5em;
+  text-align: center;
+  font-family: 'Source Sans Pro', sans-serif;
+  border: 5px solid rgb(68, 68, 68);
+}
+/*-------------------ANSWER MODALS-----------------------------*/
+
 /*-------------------NEW BADGE MODALS-----------------------------*/
+.newBadgeModal {
+  position: absolute;
+  margin-top: 10%;
+  width: 80%;
+  height: 90%;
+  z-index: 1;
+  background-color: rgb(255, 255, 0);
+  border-radius: 40px;
+  margin-left: 10%;
+  z-index: 2;
+}
+.newBadgeModal p {
+  font-size: 2em;
+  margin-top: 20%;
+  width: 95%;
+  margin-left: 2.5%;
+  text-align: center;
+}
+.newBadgeModal img {
+  width: 80%;
+  margin-left: 10%;
+  margin-bottom: 2em;
+}
+.newBadgeModal button {
+  font-size: 2em;
+  width: 80%;
+  margin-left: 10%;
+  border-radius: 0.1em;
+  text-align: center;
+  font-family: 'Source Sans Pro', sans-serif;
+  border: 5px solid rgb(68, 68, 68);
+}
+.newTriviaBadgeModal {
+  position: absolute;
+  margin-top: 10%;
+  width: 80%;
+  height: 90%;
+  background-color: rgb(255, 255, 0);
+  border-radius: 40px;
+  margin-left: 10%;
+  z-index: 1;
+}
+.newTriviaBadgeModal p {
+  font-size: 2em;
+  margin-top: 20%;
+  width: 95%;
+  margin-left: 2.5%;
+  text-align: center;
+}
+.newTriviaBadgeModal img {
+  width: 80%;
+  margin-left: 10%;
+  margin-bottom: 2em;
+}
+.newTriviaBadgeModal button {
+  font-size: 2em;
+  width: 80%;
+  margin-left: 10%;
+  border-radius: 0.1em;
+  margin-bottom: 1em;
+  text-align: center;
+  font-family: 'Source Sans Pro', sans-serif;
+  border: 5px solid rgb(68, 68, 68);
+}
+/*-------------------SHOW BADGE MODAL-----------------------------*/
+.showBadgeModal {
+  width: 80%;
+  margin-left: 10%;
+  min-height: 90%;
+  background-color: rgb(255, 255, 0);
+  border-radius: 40px;
+  z-index: 1;
+  background-color: rgb(44, 193, 106);
+}
+.showBadgeModal p {
+  text-align: center;
+  font-size: 2em;
+  margin-bottom: 0.5em;
+}
+.badges {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+.oneBadge img {
+  margin-left: calc(50% - 100px);
+  width: 200px;
+  height: 200px;
+  margin-bottom: 1.5em;
+}
+.showBadgeModal button {
+  font-size: 1em;
+  width: 80%;
+  margin-left: 10%;
+  border-radius: 0.1em;
+  margin-bottom: 1em;
+  text-align: center;
+  font-family: 'Source Sans Pro', sans-serif;
+  border: 5px solid rgb(68, 68, 68);
+}
+}
+
+
+
+
+
+
+
+
+
+
+
+/*----------------------@1000--------------------*/
+@media only screen and (min-width: 1000px) {
+body {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 1.5em;
+  background-color: rgb(0,0,0);
+}
+input {
+  font-size: 1.5em;
+  width: 100%;
+  border-radius: 0.1em;
+  margin-bottom: 1em;
+  text-align: center;
+  font-family: 'Source Sans Pro', sans-serif;
+  border: 5px solid rgb(68, 68, 68);
+}
+.submitButton {
+  border: 5px solid rgb(29, 132, 72);
+  color: rgb(68, 68, 68);
+  background-color: rgb(196, 196, 196);
+  width: 105%;
+}
+a {
+  text-decoration: none;
+}
+
+/*-------------------LOGIN/CREATE MODALS-----------------------------*/
+.loginModal {
+  position: absolute;
+  margin-top: 30%;
+  width: 80%;
+  height: 80%;
+  z-index: 1;
+  background-color: rgb(44, 193, 106);
+  border-radius: 40px;
+  margin-left: 10%;
+}
+.titleImage {
+  position: absolute;
+  margin-left: 12.5%;
+  width: 75%;
+  margin-top: 0.3em;
+}
+.loginForm {
+  margin-left: 5%;
+  margin-top: 10%;
+  width: 85%;
+}
+.loginModal p {
+  margin-top: 0.1em;
+  margin-bottom: 0.4em;
+  text-align: center;
+  font-size: 1.5em;
+  line-height: 1.6em;
+}
+.createUserModal {
+  position: absolute;
+  font-size: 1.1em;
+  margin-top: 30%;
+  width: 80%;
+  min-height: 80%;
+  z-index: 1;
+  background-color: rgb(44, 193, 106);
+  border-radius: 40px;
+  margin-left: 10%;
+}
+.formContainer {
+  display: block;
+}
+.submitDiv {
+  display: block;
+}
+.createUserForm {
+  margin-left: 7.5%;
+  margin-top: 10%;
+  width: 80%;
+  display: block;
+}
+.createUserForm input {
+  font-size: 1.3em;
+  margin-bottom: 0.9em;
+  text-align: center;
+  border: 5px solid rgb(68, 68, 68);
+}
+.createUserForm .submitButton {
+  width: 105%;
+}
+.createUserModal p {
+  margin-top: -0.3em;
+  margin-bottom: 0.6em;
+  text-align: center;
+  line-height: 1em;
+}
+/*-------------------LOGIN/CREATE MODALS-----------------------------*/
+
+/*-------------------NEXT-QUESTION-FORM-----------------------------*/
+.nextQuestionModal {
+  position: absolute;
+  margin-top: 30%;
+  width: 80%;
+  height: 80%;
+  z-index: 1;
+  background-color: rgb(44, 193, 106);
+  border-radius: 40px;
+  margin-left: 10%;
+}
+.nextQuestionForm {
+  margin-left: 10%;
+  margin-top: 5%;
+  width: 80%;
+}
+.nextQuestionModal p {
+  font-size: 1.5em;
+  margin-top: 0.5em;
+  margin-bottom: 0.3em;
+  text-align: center;
+  line-height: 1em;
+}
+.nextQuestionModal select {
+  font-size: 1.3em;
+  width: 100%;
+  border-radius: 0.1em;
+  text-align: center;
+  font-family: 'Source Sans Pro', sans-serif;
+  border: 5px solid rgb(68, 68, 68);
+}
+.nextQuestionModal option {
+  font-size: 1.5em;
+  width: 100%;
+  border-radius: 0.1em;
+  margin-bottom: 0.3em;
+  text-align: center;
+  font-family: 'Source Sans Pro', sans-serif;
+  border: 5px solid rgb(68, 68, 68);
+}
+.questionSubmit {
+  margin-top: 2em;
+}
+/*-------------------NEXT-QUESTION-FORM-----------------------------*/
+
+/*-------------------SHOW QUESTION-----------------------------*/
+.showQuestion {
+  position: absolute;
+  margin-top: 10%;
+  width: 80%;
+  height: 90%;
+  z-index: 1;
+  background-color: rgb(44, 193, 106);
+  border-radius: 40px;
+  margin-left: 10%;
+}
+.showQuestion p {
+  text-align: center;
+  font-size: 1.5em;
+  margin-bottom: 2em;
+}
+.showQuestion button {
+  font-size: 1em;
+  width: 80%;
+  margin-left: 10%;
+  border-radius: 0.1em;
+  margin-bottom: 1.5em;
+  text-align: center;
+  font-family: 'Source Sans Pro', sans-serif;
+}
+.optionA {
+  background-color: rgb(255, 136, 136);
+  border: 5px solid rgb(255, 0, 0);
+}
+.optionB {
+  background-color: rgb(136, 255, 136);
+  border: 5px solid rgb(0, 255, 0);
+}
+.optionC {
+  background-color: rgb(255, 255, 136);
+  border: 5px solid rgb(255, 255, 0);
+}
+.optionD {
+  background-color: rgb(136, 136, 255);
+  border: 5px solid rgb(0, 0, 255);
+}
+/*-------------------SHOW QUESTION-----------------------------*/
+
+/*-------------------ANSWER MODALS-----------------------------*/
+.answerModal {
+  position: absolute;
+  margin-top: 10%;
+  width: 80%;
+  height: 90%;
+  z-index: 1;
+  background-color: rgb(44, 193, 106);
+  border-radius: 40px;
+  margin-left: 10%;
+  font-size: 1em;
+}
+.answerModal p {
+  font-size: 2em;
+  margin-top: 10%;
+  width: 95%;
+  margin-left: 2.5%;
+  text-align: center;
+}
+.answerModal button {
+  font-size: 1em;
+  width: 80%;
+  margin-left: 10%;
+  border-radius: 0.1em;
+  margin-bottom: 1.5em;
+  text-align: center;
+  font-family: 'Source Sans Pro', sans-serif;
+  border: 5px solid rgb(68, 68, 68);
+}
+/*-------------------ANSWER MODALS-----------------------------*/
+
+/*-------------------NEW BADGE MODALS-----------------------------*/
+.newBadgeModal {
+  position: absolute;
+  margin-top: 10%;
+  width: 80%;
+  height: 90%;
+  z-index: 1;
+  background-color: rgb(255, 255, 0);
+  border-radius: 40px;
+  margin-left: 10%;
+  z-index: 2;
+}
+.newBadgeModal p {
+  font-size: 2em;
+  margin-top: 20%;
+  width: 95%;
+  margin-left: 2.5%;
+  text-align: center;
+}
+.newBadgeModal img {
+  width: 80%;
+  margin-left: 10%;
+  margin-bottom: 2em;
+}
+.newBadgeModal button {
+  font-size: 2em;
+  width: 80%;
+  margin-left: 10%;
+  border-radius: 0.1em;
+  text-align: center;
+  font-family: 'Source Sans Pro', sans-serif;
+  border: 5px solid rgb(68, 68, 68);
+}
+.newTriviaBadgeModal {
+  position: absolute;
+  margin-top: 10%;
+  width: 80%;
+  height: 90%;
+  background-color: rgb(255, 255, 0);
+  border-radius: 40px;
+  margin-left: 10%;
+  z-index: 1;
+}
+.newTriviaBadgeModal p {
+  font-size: 2em;
+  margin-top: 20%;
+  width: 95%;
+  margin-left: 2.5%;
+  text-align: center;
+}
+.newTriviaBadgeModal img {
+  width: 80%;
+  margin-left: 10%;
+  margin-bottom: 2em;
+}
+.newTriviaBadgeModal button {
+  font-size: 2em;
+  width: 80%;
+  margin-left: 10%;
+  border-radius: 0.1em;
+  margin-bottom: 1em;
+  text-align: center;
+  font-family: 'Source Sans Pro', sans-serif;
+  border: 5px solid rgb(68, 68, 68);
+}
+/*-------------------SHOW BADGE MODAL-----------------------------*/
+.showBadgeModal {
+  width: 80%;
+  margin-left: 10%;
+  min-height: 90%;
+  background-color: rgb(255, 255, 0);
+  border-radius: 40px;
+  z-index: 1;
+  background-color: rgb(44, 193, 106);
+}
+.showBadgeModal p {
+  text-align: center;
+  font-size: 2em;
+  margin-bottom: 0.5em;
+}
+.badges {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+.oneBadge img {
+  margin-left: calc(50% - 100px);
+  width: 200px;
+  height: 200px;
+  margin-bottom: 1.5em;
+}
+.showBadgeModal button {
+  font-size: 1em;
+  width: 80%;
+  margin-left: 0%;
+  border-radius: 0.1em;
+  margin-bottom: 1em;
+  text-align: center;
+  font-family: 'Source Sans Pro', sans-serif;
+  border: 5px solid rgb(68, 68, 68);
+}
 }
