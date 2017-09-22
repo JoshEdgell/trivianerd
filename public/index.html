@@ -124,13 +124,13 @@
 
 
 
-
+          <!-- Changes made for displaying badges -->
       <!-- Styling Complete @320 -->
     <div class="answerModal" ng-if="main.displayCorrect">
       <p>You're Right!</p>
       <button ng-click="main.getNextQuestion();">Get Another Question</button>
       <button ng-click="main.changeQuestionType();">Change Question Type</button>
-      <!-- <button ng-click="main.showStats();">See My Stats</button> -->
+      <button ng-click="main.showBadges();">See My Badges</button>
       <button class="submitButton" ng-click="main.quit();">Quit</button>
     </div>
 
@@ -145,8 +145,20 @@
       <p>Not quite!</p>
       <button ng-click="main.getNextQuestion();">Get Another Question</button>
       <button ng-click="main.changeQuestionType();">Change Question Type</button>
-      <!-- <button ng-click="main.showStats();">See My Stats</button> -->
+      <button ng-click="main.showBadges();">See My Badges</button>
       <button class="submitButton" ng-click="main.quit();">Quit</button>
+    </div>
+
+
+    <div class="showBadgeModal" ng-if="main.displayBadges">
+      <p>Your Badges</p>
+      <div class="oneBadge" ng-repeat="badge in main.loggedUser.badges">
+        <img ng-src="{{badge.url}}"/>
+      </div>
+      <button ng-click="main.getNextQuestion();">Get Another Question</button>
+      <button ng-click="main.changeQuestionType();">Change Question Type</button>
+      <button class="submitButton" ng-click="main.quit();">Quit</button>
+
     </div>
 
 

@@ -28,9 +28,24 @@ app.controller('mainController', ['$http', function($http){
   this.displayCorrect = false;
   this.displayIncorrect = false;
   this.displayChart = false;
+  this.displayBadges = false;
   this.geekLevel = 5;
   this.wonkLevel = 10;
   this.nerdLevel = 20;
+  this.hideAllModals = function(){
+    this.displayLoginModal = false;
+    this.displayCreateModal = false;
+    this.displayNoMatch = false;
+    this.displayLoginFail = false;
+    this.displayNewBadgeModal = false;
+    this.displayNewTriviaBadgeModal = false;
+    this.displayQuestionForm = false;
+    this.displayQuestion = false;
+    this.displayCorrect = false;
+    this.displayIncorrect = false;
+    this.displayChart = false;
+    this.displayBadges = false;
+  };
   this.createUser = function(){
     if (this.newUser.password != this.newUser.password2) {
       console.log('no match');
@@ -45,6 +60,7 @@ app.controller('mainController', ['$http', function($http){
       data: { user: this.newUser },
     }).then(function(response){
       controller.login();
+      console.log(response);
     })
   };
   this.login = function() {
@@ -115,6 +131,7 @@ app.controller('mainController', ['$http', function($http){
     this.displayQuestionForm = false;
     this.displayCorrect = false;
     this.displayIncorrect = false;
+    this.displayBadges = false;
     this.displayQuestion = true;
     if (this.nextQuestionDifficulty == 'easy'){
       this.currentPointValue = 100;
@@ -249,12 +266,14 @@ app.controller('mainController', ['$http', function($http){
   this.changeQuestionType = function(){
     this.displayCorrect = false;
     this.displayIncorrect = false;
+    this.displayBadges = false;
     this.displayQuestionForm = true;
   };
   this.quit = function(){
     this.logout();
     this.newUser = {};
     this.loggedUser = {};
+    this.hideAllModals();
     this.displayLoginModal = true;
   };
   this.checkForBadge = function(badge){
@@ -473,5 +492,11 @@ app.controller('mainController', ['$http', function($http){
     },function(error){
       console.log(error);
     })
+  };
+  this.showBadges = function(){
+    console.log('trying to show badges');
+    this.displayCorrect = false;
+    this.displayIncorrect = false;
+    this.displayBadges = true;
   }
 }])

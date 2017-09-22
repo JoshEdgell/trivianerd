@@ -266,6 +266,37 @@ a {
   font-family: 'Source Sans Pro', sans-serif;
   border: 5px solid rgb(68, 68, 68);
 }
+/*-------------------SHOW BADGE MODAL-----------------------------*/
+.showBadgeModal {
+  width: 80%;
+  margin-left: 10%;
+  min-height: 90%;
+  background-color: rgb(255, 255, 0);
+  border-radius: 40px;
+  z-index: 1;
+  background-color: rgb(44, 193, 106);
+}
+.showBadgeModal p {
+  text-align: center;
+  font-size: 2em;
+  margin-bottom: 0.5em;
+}
+.oneBadge img {
+  margin-left: calc(50% - 100px);
+  width: 200px;
+  height: 200px;
+  margin-bottom: 0.5em;
+}
+.showBadgeModal button {
+  font-size: 1em;
+  width: 80%;
+  margin-left: 10%;
+  border-radius: 0.1em;
+  margin-bottom: 1em;
+  text-align: center;
+  font-family: 'Source Sans Pro', sans-serif;
+  border: 5px solid rgb(68, 68, 68);
+}
 }
 
 
