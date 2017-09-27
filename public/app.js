@@ -243,6 +243,7 @@ app.controller('mainController', ['$http', function($http){
     }
     this.assignBadges();
     this.assignTriviaBadges();
+    this.postUserData();
   };
   this.postUserData = function(){
     $http({
