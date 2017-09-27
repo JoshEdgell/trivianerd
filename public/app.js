@@ -156,21 +156,25 @@ app.controller('mainController', ['$http', function($http){
   this.assignAnswerChoices = function(){
     let value = Math.floor(Math.random()*4);
     if (value == 0) {
+      console.log("A");
       this.assignedChoices[0] = this.currentAnswer;
       this.assignedChoices[1] = this.currentDistractors[0];
       this.assignedChoices[2] = this.currentDistractors[1];
       this.assignedChoices[3] = this.currentDistractors[2];
     } else if (value == 1) {
+      console.log('B');
       this.assignedChoices[0] = this.currentDistractors[0];
       this.assignedChoices[1] = this.currentAnswer;
       this.assignedChoices[2] = this.currentDistractors[1];
       this.assignedChoices[3] = this.currentDistractors[2];
     } else if (value == 2) {
+      console.log("C");
       this.assignedChoices[0] = this.currentDistractors[0];
       this.assignedChoices[1] = this.currentDistractors[1];
       this.assignedChoices[2] = this.currentAnswer;
       this.assignedChoices[3] = this.currentDistractors[2];
     } else {
+      console.log("D");
       this.assignedChoices[0] = this.currentDistractors[0];
       this.assignedChoices[1] = this.currentDistractors[1];
       this.assignedChoices[2] = this.currentDistractors[2];
