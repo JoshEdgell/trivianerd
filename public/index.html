@@ -131,6 +131,7 @@
       <button ng-click="main.getNextQuestion();">Get Another Question</button>
       <button ng-click="main.changeQuestionType();">Change Question Type</button>
       <button ng-click="main.showBadges();">See My Badges</button>
+      <button class="onlyFullScreen" ng-click="main.seeChart();">See My Stats</button>
       <button class="submitButton" ng-click="main.quit();">Quit</button>
     </div>
 
@@ -146,6 +147,7 @@
       <button ng-click="main.getNextQuestion();">Get Another Question</button>
       <button ng-click="main.changeQuestionType();">Change Question Type</button>
       <button ng-click="main.showBadges();">See My Badges</button>
+      <button class="onlyFullScreen" ng-click="main.seeChart();">See My Stats</button>
       <button class="submitButton" ng-click="main.quit();">Quit</button>
     </div>
 
@@ -181,5 +183,27 @@
       <img ng-src="{{main.loggedUser.badges[main.loggedUserBadges].url}}"/>
       <button ng-click="main.closeNewTriviaBadgeModal();">Close</button>
     </div>
+
+
+
+    <div class="showChart" ng-show="main.displayChart">
+
+      <div class="chart">
+        <canvas id="graph" width="400" height="300"></canvas>
+      </div>
+        <button ng-click="main.getNextQuestion();">Get Another Question</button>
+        <button ng-click="main.changeQuestionType();">Change Question Type</button>
+        <button ng-click="main.showBadges();">See My Badges</button>
+        <button class="submitButton" ng-click="main.quit();">Quit</button>
+
+
+    </div>
+
+
+
+
+
+
+
   </body>
 </html>

@@ -128,10 +128,7 @@ app.controller('mainController', ['$http', function($http){
     })
   };
   this.getNextQuestion = function(){
-    this.displayQuestionForm = false;
-    this.displayCorrect = false;
-    this.displayIncorrect = false;
-    this.displayBadges = false;
+    this.hideAllModals();
     this.displayQuestion = true;
     if (this.nextQuestionDifficulty == 'easy'){
       this.currentPointValue = 100;
@@ -264,9 +261,7 @@ app.controller('mainController', ['$http', function($http){
 
   };
   this.changeQuestionType = function(){
-    this.displayCorrect = false;
-    this.displayIncorrect = false;
-    this.displayBadges = false;
+    this.hideAllModals();
     this.displayQuestionForm = true;
   };
   this.quit = function(){
@@ -494,9 +489,39 @@ app.controller('mainController', ['$http', function($http){
     })
   };
   this.showBadges = function(){
-    console.log('trying to show badges');
-    this.displayCorrect = false;
-    this.displayIncorrect = false;
+    this.hideAllModals();
     this.displayBadges = true;
+  };
+  this.seeChart = function(){
+    this.hideAllModals();
+    this.displayChart = true;
+    const ctx = document.querySelector('#graph');
+
+    const scoresChart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ["Animals", "Books", "Computers", "History", "Movies", "Music", "Science & Nature", "Sports", "Television"],
+        datasets: [{
+          label: "Correct",
+          data: [this.loggedUser.animals_correct, this.loggedUser.books_correct, this.loggedUser.computers_correct, this.loggedUser.history_correct, this.loggedUser.film_correct, this.loggedUser.music_correct, this.loggedUser.nature_correct, this.loggedUser.sports_correct, this.loggedUser.television_correct],
+          backgroundColor: 'rgba(0,255,0,1)'
+        },
+        {
+          label: "Incorrect",
+          data: [this.loggedUser.animals_incorrect, this.loggedUser.books_incorrect, this.loggedUser.computers_incorrect, this.loggedUser.history_incorrect, this.loggedUser.film_incorrect, this.loggedUser.music_incorrect, this.loggedUser.nature_incorrect, this.loggedUser.sports_incorrect, this.loggedUser.television_incorrect],
+          backgroundColor: 'rgba(255,0,0,1)'
+        }
+      ]
+      },
+      options: {
+        scales: {
+          yAxes: [{
+            ticks: {
+              beginAtZero: true
+            }
+          }]
+        }
+      }
+    });
   }
 }])
